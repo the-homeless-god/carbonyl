@@ -1,51 +1,34 @@
-<table align="center">
-  <tbody>
-    <tr>
-      <td>
-        <p></p>
-        <pre>
-   O    O
-    \  /
-O —— Cr —— O
-    /  \
-   O    O</pre>
-      </td>
-      <td><h1>Carbonyl</h1></td>
-    </tr>
-  </tbody>
-</table>
-
-Carbonyl is a Chromium based browser built to run in a terminal. [Read the blog post](https://fathy.fr/carbonyl).
+`wb` is a Chromium based browser built to run in a terminal. [Read the blog post](https://fathy.fr/carbonyl).
 
 It supports pretty much all Web APIs including WebGL, WebGPU, audio and video playback, animations, etc..
 
 It's snappy, starts in less than a second, runs at 60 FPS, and idles at 0% CPU usage. It does not require a window server (i.e. works in a safe-mode console), and even runs through SSH.
 
-Carbonyl originally started as [`html2svg`](https://github.com/fathyb/html2svg) and is now the runtime behind it.
+Based on [`html2svg`](https://github.com/fathyb/html2svg) and is now the runtime behind it.
 
 ## Usage
 
-> Carbonyl on Linux without Docker requires the same dependencies as Chromium.
+> `wb` on Linux without Docker requires the same dependencies as Chromium.
 
 ### Docker
 
 ```shell
-$ docker run --rm -ti fathyb/carbonyl https://youtube.com
+$ docker run --rm -ti the-homeless-god/wb https://youtube.com
 ```
 
 ### npm
 
 ```console
-$ npm install --global carbonyl
-$ carbonyl https://github.com
+$ npm install --global wb
+$ wb https://github.com
 ```
 
 ### Binaries
 
-- [macOS amd64](https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.macos-amd64.zip)
-- [macOS arm64](https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.macos-arm64.zip)
-- [Linux amd64](https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-amd64.zip)
-- [Linux arm64](https://github.com/fathyb/carbonyl/releases/download/v0.0.3/carbonyl.linux-arm64.zip)
+- [macOS amd64](https://github.com/the-homeless-god/wb/releases/download/v0.0.3/wb.macos-amd64.zip)
+- [macOS arm64](https://github.com/the-homeless-god/wb/releases/download/v0.0.3/wb.macos-arm64.zip)
+- [Linux amd64](https://github.com/the-homeless-god/wb/releases/download/v0.0.3/wb.linux-amd64.zip)
+- [Linux arm64](https://github.com/the-homeless-god/wb/releases/download/v0.0.3/wb.linux-arm64.zip)
 
 ## Demo
 
@@ -73,36 +56,17 @@ $ carbonyl https://github.com
 
 ## Comparisons
 
-### Lynx
-
-Lynx is the original terminal web browser, and the oldest one still maintained.
-
-#### Pros
-
-- When it understands a page, Lynx has the best layout, fully optimized for the terminal
-
-#### Cons
-
-> Some might sound like pluses, but Browsh and Carbonyl let you disable most of those if you'd like
-
-- Does not support a lot of modern web standards
-- Cannot run JavaScript/WebAssembly
-- Cannot view or play media (audio, video, DOOM)
-
-### Browsh
-
-Browsh is the original "normal browser into a terminal" project. It starts Firefox in headless mode and connects to it through an automation protocol.
-
-#### Pro
-
-- It's easier to update the underlying browser: just update Firefox
-- This makes development easier: just install Firefox and compile the Go code in a few seconds
-- As of today, Browsh supports extensions while Carbonyl doesn't, although it's on our roadmap
-
-#### Cons
-
-- It runs slower and requires more resources than Carbonyl. 50x more CPU power is needed for the same content in average, that's because Carbonyl does not downscale or copy the window framebuffer, it natively renders to the terminal resolution.
-- It uses custom stylesheets to fix the layout, which is less reliable than Carbonyl's changes to its HTML engine (Blink).
+| Feature                 | Lynx                                          | Browsh                                       |
+|-------------------------|-----------------------------------------------|----------------------------------------------|
+| Type                    | Terminal web browser                          | Browser into a terminal                       |
+| Age                     | Oldest and still maintained                   | Original "normal browser into a terminal"   |
+| Layout Optimization     | Best layout when it understands a page         | Custom stylesheets to fix layout             |
+| Web Standards Support   | Limited support for modern web standards      | Utilizes Firefox in headless mode            |
+| JavaScript/WebAssembly  | Not supported                                 | Not supported                                |
+| Media Support           | Cannot view or play media (audio, video, DOOM)| Depends on underlying browser (Firefox)     |
+| Extension Support       | N/A                                           | Supports extensions (as of today)           |
+| Resource Usage          | N/A                                           | Slower and requires more resources than `wb`|
+| Development Ease        | N/A                                           | Easier to update underlying browser         |
 
 ## Operating System Support
 
